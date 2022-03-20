@@ -1,0 +1,2 @@
+l2-6.ephec-ti.be      IN NS ns.l2-6.ephec-ti.be
+ns.l2-6.ephec-ti.be IN  A 176.96.231.190
