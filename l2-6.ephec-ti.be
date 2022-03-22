@@ -21,7 +21,7 @@ serverWeb	IN	    A		176.96.231.190
 b2b         IN      CNAME   serverWeb
 www         IN      CNAME   serverWeb
 
-; SPF
+; SPF ( empêche le spoofing )
 @           IN	    TXT     "v=spf1 a mx ip4:176.96.231.190 include:_spf.google.com ~all"
 
 ; Services Mail
