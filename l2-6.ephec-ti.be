@@ -9,7 +9,8 @@ $TTL 604800
 ;
 ; name servers - NS record
 @           IN      NS      ns.l2-6.ephec-ti.be.
-@			IN      MX  10  mail
+; MX record
+@			      IN      MX  10  mail
 
 ; name servers - A record
 ns          IN      A       176.96.231.190
