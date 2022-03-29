@@ -1,11 +1,11 @@
 $ORIGIN l2-6.ephec-ti.be.
 $TTL 604800
 @       IN      SOA     ns.l2-6.ephec-ti.be. a.leveau.students.ephec.be. (
-                        2022       ; Serial
-                        43200      ; Refresh
-                        7200       ; Retry
-                        2419200    ; Expire
-                        86400 )    ; Negative Cache TTL
+                        2022     ; Serial
+                        3600     ; Refresh [1 h]
+                        600      ; Retry [10 min]
+                        86400    ; Expire [1 jour ]
+                        600 )    ; Negative Cache TTL [1 h ]
 ;
 ; name servers - NS record
 @           IN      NS      ns.l2-6.ephec-ti.be.
