@@ -1,0 +1,60 @@
+version: '2'
+
+##############################################
+##       Docker Services Configuration      ##
+##############################################
+
+services:
+
+  resolver:
+    build: 
+      context: ./Resolver
+      dockerfile: Dockerfile
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    networks:
+      local_net:
+          ipv4_address: 172.16.0.2
+    volumes:
+      - ./Resolver/named.conf:/etc/bind/named.conf
+    container_name: resolver
+
+  soa-in:
+    build: 
+      context: ./SOA-in
+      dockerfile: Dockerfile
+    #ports:
+     # - "53:53/tcp"
+      #- "53:53/udp"
+    networks:
+       local_net:
+          ipv4_address: 172.16.0.3 
+    volumes:
+      - ./SOA-in/named.conf:/etc/bind/named.conf
+      - ./SOA-in/intranet.wt2-5.ephec-ti.be:/etc/bind/intranet.wt2-5.ephec-ti.be
+      - ./SOA-in/reverse:/etc/bind/reverse
+    container_name: soa-in
+
+
+
+    
+##############################################
+##       Docker Networks Configuration      ##
+##############################################
+
+networks:
+
+  local_net:
+      ipam:
+          driver: default
+          config:
+              - subnet: 172.16.0.0/24
+                gateway:  172.16.0.1
+
+  dmz_net:
+    ipam:
+        driver: default
+        config:
+            - subnet: 172.16.1.0/24
+              gateway: 172.16.1.1

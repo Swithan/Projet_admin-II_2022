@@ -1,0 +1,21 @@
+$ORIGIN 0.16.172.in-addr.arpa.
+$TTL 604800
+@       IN      SOA     ns.intranet.l2-6.ephec-ti.be. admin.l2-6.ephec-ti.be. (
+                        2022     ; Serial
+                        3600     ; Refresh [1 h]
+                        600      ; Retry [10 min]
+                        86400    ; Expire [1 jour ]
+                        600 )    ; Negative Cache TTL [1 h ]
+;
+; name servers => RR de type NS
+@               IN      NS      ns.intranet.l2-6.ephec-ti.be.
+
+; name servers => RR de type PTR
+3               IN      PTR     ns.intranet.l2-6.ephec-ti.be.
+
+; services web
+4               IN      PTR     erp.intranet.l2-6.ephec-ti.be.
+5               IN      PTR     mysql.intranet.l2-6.ephec-ti.be.
+
+; service cloud
+6               IN      PTR     ftp.intranet.l2-6.ephec-ti.be
