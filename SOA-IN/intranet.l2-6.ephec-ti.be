@@ -11,11 +11,10 @@ $TTL 604800
             IN      NS      ns.intranet.l2-6.ephec-ti.be.
 
 ; name servers => RR de type A
-ns          IN      A       172.16.0.3
+ns          IN      A       172.17.0.1
 
 ; services web
-erp         IN      A       172.16.0.4
-DB          IN      A       172.16.0.5
+DB          IN      A       172.17.0.3
 
 ; service cloud
-ftp         IN      A       172.16.0.6
+ftp         IN      A       172.17.0.4
