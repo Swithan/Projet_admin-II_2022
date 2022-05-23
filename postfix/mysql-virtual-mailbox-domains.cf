@@ -1,5 +1,6 @@
+# Requete pour recuperer le nom de domaine virtuel
 user = mailUser
-password = root
+password = admin2-6
 hosts = 127.0.0.1
-dbname = datamail
+dbname = maildb
 query = SELECT 1 FROM virtual_domains WHERE name='%s'

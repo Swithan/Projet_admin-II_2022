@@ -1,46 +1,61 @@
-## message envoyé quand quelqu’un se connecte au serveur
+# message envoyé quand quelqu’un se connecte au serveur
 smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
 ## Système pour prévenir l’utilisateur de la réception de nouveaux mails
 biff = no
-
-# appending .domain is the MUA's job.
 append_dot_mydomain = no
 readme_directory = no
 compatibility_level = 2
 
-# SSL - Security
+# Paramètres utilisés pour utiliser du chiffrement pour sécuriser les mails via SSL/TLS
 smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
 smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 smtpd_use_tls=yes
 smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
-# Main configs
+# Indique comment postfix communique avec dovecot
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_auth_enable = yes
+smtpd_tls_security_level = may
+smtpd_tls_auth_only = yes
+smtpd_recipient_restrictions = permit_mynetworks permit_sasl_authenticated reject_unauth_destination
+
+# Permet de se proteger des spammeurs
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-# Nom d'hôte du système de messagerie sur internet
+# Nom d'hôte du système de messagerie
 myhostname = mail.l2-6.ephec-ti.be
-# Nom de domaine du système de messagerie sur internet
+# Nom de domaine du système de messagerie 
 mydomain = l2-6.ephec-ti.be
+myorigin = l2-6.ephec-ti.be
 # Lieu et mode d’utilisation des alias
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-# nom de domaine utilisé pour les mails issus de notre serveur
-myorigin = l2-6.ephec-ti.be
 # Noms de domaines acceptés par notre serveur pour une livraison locale
 mydestination = $myhostname, localhost.localdomain, localhost.l2-6.ephec-ti.be, localhost
 # Réseaux de confiance
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+
 # taille limite d’un fichier dans notre boîte aux lettres
 mailbox_size_limit = 0
 recipient_delimiter = +
+
 # Interfaces réseau sur lesquelles le serveur est en écoute
 inet_interfaces = all
-# Si l’on veut spécifier que notre serveur fonctionne en IPv4 ou IPv6
+# Protocoles utilise IPV4 ET IPV6
 inet_protocols = all
 
+# Inqique le nom de notre domaine virtuel
 virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
+# indique ou vont se situer les boites mail
 virtual_mailbox_base = /var/mail/vhosts
+# indique ou trouver les adresses mail
 virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
+
+# indique les uid et gid de l'utilisateur vhost
 virtual_minimum_uid = 100
 virtual_uid_maps = static:5000
 virtual_gid_maps = static:5000
+
+# indique le fichier contenant les adresses generiques
+smtp_generic_maps = hash:/etc/postfix/generic

@@ -1,0 +1,9 @@
+# Ajout *****SPAM***** dans le sujet du mail
+
+rewrite_header Subject [***** SPAM _SCORE_ *****]
+
+# Seuil à partir duquel un message est considéré comme spam
+
+required_score 4.0
+
+

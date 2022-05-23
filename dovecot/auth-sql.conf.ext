@@ -1,0 +1,22 @@
+#
+# Indique a Doevcot les informations permettant de se connecter à la base SQL
+#
+
+# Indique à Dovecot où se situent les informations d’authentification des utilisateurs
+
+passdb {
+  driver = sql
+  args = /etc/dovecot/dovecot-sql.conf.ext
+}
+
+# Indique a Dovecot quel utilisateur utiliser pour acceder aux boites mail.
+
+userdb {
+  driver = static
+  args = uid=vhosts gid=vhosts home=/var/mail/vhosts/%d/%n
+}
+
+
+
+
+

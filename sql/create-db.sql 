@@ -1,10 +1,10 @@
-create database datamail;
+create database maildb;
 
-GRANT ALL PRIVILEGES ON datamail.* to 'mailUser'@'localhost' identified by 'root';
+GRANT ALL PRIVILEGES ON maildb.* to 'mailUser'@'localhost' identified by 'admin2-6';
 
 FLUSH PRIVILEGES;
 
-use datamail;
+use maildb;
 
 CREATE TABLE `virtual_domains` (
 `id` INT NOT NULL AUTO_INCREMENT,
