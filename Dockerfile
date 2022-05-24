@@ -43,12 +43,14 @@ RUN apt-get install -y postfix postfix-mysql
 # Compilation de nos fichiers via postmap
 
 RUN groupadd -g 5000 vhosts && useradd -g vhosts -u 5000 vhosts -d /var/mail/vhosts -s /bin/false -m
+
 COPY postfix/main.cf /etc/postfix/main.cf
 COPY postfix/master.cf /etc/postfix/master.cf
 COPY postfix/generic /etc/postfix/generic
 COPY postfix/mysql-virtual-mailbox-domains.cf /etc/postfix/mysql-virtual-mailbox-domains.cf
 COPY postfix/mysql-virtual-mailbox-maps.cf /etc/postfix/mysql-virtual-mailbox-maps.cf
 COPY postfix/vmailbox /etc/postfix/vmailbox
+
 RUN postmap /etc/postfix/vmailbox
 RUN postmap /etc/postfix/generic
 
@@ -69,12 +71,11 @@ COPY dovecot/dovecot.conf /etc/dovecot/dovecot.conf
 COPY dovecot/dovecot-sql.conf.ext /etc/dovecot/dovecot-sql.conf.ext
 COPY dovecot/10-auth.conf /etc/dovecot/conf.d/10-auth.conf
 COPY dovecot/10-mail.conf /etc/dovecot/conf.d/10-mail.conf
-COPY dovecot/10-master.conf /etc/dovecot/conf.d/10-master.conf
 COPY dovecot/auth-sql.conf.ext /etc/dovecot/conf.d/auth-sql.conf.ext
 COPY dovecot/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf
-
 COPY dovecot/20-lmtp.conf /etc/dovecot/conf.d/20-lmtp.conf
 COPY dovecot/default.sieve /var/lib/dovecot/sieve/default.sieve
+
 RUN sievec /var/lib/dovecot/sieve/default.sieve
 RUN chown -R vhosts:vhosts /var/lib/dovecot/sieve/*
 RUN chmod a+x /var/lib/dovecot
@@ -93,11 +94,16 @@ RUN groupadd spamd
 RUN useradd -g spamd -s /bin/false -d /var/log/spamassassin spamd
 RUN mkdir /var/log/spamassassin
 RUN chown spamd:spamd /var/log/spamassassin
+
 COPY spamassassin/spamassassin /etc/default/spamassassin
 COPY spamassassin/local.cf /etc/spamassassin/local.cf
 
 
 # -------------------
+
+# Ajout dossier logs
+
+RUN nano /var/log/mail.log
 
 # lancement du containeur
 
