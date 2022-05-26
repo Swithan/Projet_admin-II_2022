@@ -1,4 +1,4 @@
-# Requete pour recuperer le nom de domaine virtuel
+# Requete pour recuperer le nom de domaine virtuel sur la DB
 user = mailUser
 password = admin2-6
 hosts = 127.0.0.1
