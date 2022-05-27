@@ -1,0 +1,8 @@
+# Requete pour recuperer l'adresse du dossier contenant les mails en fonction de l adresse mail sur la DB
+user = mailUser
+password = admin2-6
+hosts = 127.0.0.1
+dbname = maildb
+query = SELECT maildir FROM virtual_users WHERE email='%s'
+
+

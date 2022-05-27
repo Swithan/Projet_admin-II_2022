@@ -1,0 +1,35 @@
+version: '2'
+
+##  Liste des différents services dockers ( containers )
+
+services:
+
+  mail:
+    build:
+      context: ./Mail
+      dockerfile: Dockerfile
+    ports:
+      - "25:25"
+      - "143:143"
+      - "465:465"
+      - "587:587"
+      - "993:993"
+    networks:
+      dmz_network:
+          ipv4_address: 172.18.0.20
+    environment:
+      MYSQL_ROOT_PASSWORD: admin2-6
+    hostname: mail
+    container_name: mail
+
+
+##   Docker Networks Configuration 
+
+networks:
+
+  dmz_network:
+    ipam:
+        driver: default
+        config:
+            - subnet: 172.18.0.16/28
+              gateway: 172.18.0.17

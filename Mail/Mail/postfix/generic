@@ -1,0 +1,3 @@
+# Permet de remplacer l adresse root@.... par no-reply@l2-6.ephec-ti.be
+root@mail   no-reply@l2-6.ephec-ti.be
+@mail       no-reply@l2-6.ephec-ti.be

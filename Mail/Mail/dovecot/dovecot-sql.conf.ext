@@ -1,0 +1,16 @@
+# Indique le type de base SQL
+
+driver = mysql
+
+# Information permettant de se connecter à la base de donnees
+
+connect = host=127.0.0.1 dbname=maildb user=mailUser password=admin2-6
+
+# Indique l algorithme utilise pour chiffrer les mots de passes
+
+default_pass_scheme = SHA512-CRYPT
+
+# Indique la requete SQL pour récuperer le mot de passe d un utilisateur
+
+password_query = SELECT email as user, password FROM virtual_users WHERE email='%u'
+
