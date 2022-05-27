@@ -4,7 +4,7 @@ ENABLED=1
 # Indique le dossier des logs
 SAHOME="/var/log/spamassassin/"
 
-# option permettant le bon fonction
+# option permettant le bon fonctionnement
 OPTIONS="--create-prefs --max-children 5 --helper-home-dir --username spamd -H ${SAHOME} -s ${SAHOME}spamd.log"
 
 # Pid file
