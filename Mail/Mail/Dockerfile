@@ -103,7 +103,7 @@ COPY spamassassin/local.cf /etc/spamassassin/local.cf
 
 # Ajout dossier logs
 
-RUN nano /var/log/mail.log
+RUN touch /var/log/mail.log
 
 # lancement du containeur
 
