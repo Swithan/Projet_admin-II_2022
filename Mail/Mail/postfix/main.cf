@@ -59,3 +59,17 @@ virtual_gid_maps = static:5000
 
 # indique le fichier contenant les adresses generiques
 smtp_generic_maps = hash:/etc/postfix/generic
+
+# Permet de verifer les mails entrant et de rejeter les mails non autorises
+policyd-spf_time_limit = 3600
+smtpd_recipient_restrictions =
+   permit_mynetworks,
+   permit_sasl_authenticated,
+   reject_unauth_destination,
+   check_policy_service unix:private/policyd-spf
+
+# Permet a postfix de communiquer avec OpenDKIM via le protocol milter
+milter_default_action = accept
+milter_protocol = 6
+smtpd_milters = local:opendkim/opendkim.sock
+non_smtpd_milters = $smtpd_milters
