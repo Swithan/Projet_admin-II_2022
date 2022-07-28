@@ -16,7 +16,7 @@ ns          IN      A       176.96.231.189
 
 
 ; Services Web
-serverWeb       IN          A           176.96.231.189
+serverWeb       IN          A           188.166.78.92
 b2b         IN      CNAME   serverWeb
 www         IN      CNAME   serverWeb
 
@@ -47,6 +47,6 @@ imap        IN      CNAME   mail
 ; Services VoIP
 _sip._udp       SRV     0       0       5060        sip
 _sip._tcp       SRV     0       0       5060        sip
-sip             IN          A       176.96.231.189
+sip             IN          A       188.166.78.92
 
 
