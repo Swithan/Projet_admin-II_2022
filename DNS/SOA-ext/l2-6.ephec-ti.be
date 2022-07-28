@@ -45,8 +45,8 @@ imap        IN      CNAME   mail
 136.248.165.82.in-addr.arpa. IN PTR mail.l2-6.ephec-ti.be
 
 ; Services VoIP
-_sip._udp       SRV     0       0       5060        sip
-_sip._tcp       SRV     0       0       5060        sip
-sip             IN          A       188.166.78.92
+sip             IN          A       188.166.78.92;
+_sip._udp       86400	SRV     10       100       5060        sip
+_sip._tcp       86400	SRV     10       100       5060        sip
 
 
